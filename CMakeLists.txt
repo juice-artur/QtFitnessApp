@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 REQUIRED COMPONENTS Quick)
 
 qt_standard_project_setup(REQUIRES 6.8)
+set(CMAKE_AUTORCC ON)
 
 qt_add_executable(appGymHelper
     main.cpp
@@ -17,9 +18,14 @@ qt_add_qml_module(appGymHelper
     VERSION 1.0
     QML_FILES
         Main.qml
-        QML_FILES
-        RESOURCES Icons/fi-ss-add.svg Icons/fi-ss-calendar.svg Icons/fi-ss-gym.svg Icons/fi-ss-home.svg
+        Components/NavBar.qml
+    RESOURCES Icons.qrc
+    QML_FILES pages/Workout.qml
+    QML_FILES pages/HomePage.qml
+    QML_FILES pages/CreateWorkout.qml
+    QML_FILES pages/Calendar.qml
 )
+
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -43,3 +49,5 @@ install(TARGETS appGymHelper
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+target_compile_definitions(appGymHelper PRIVATE QT_QML_DEBUG)

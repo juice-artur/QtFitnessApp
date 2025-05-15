@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>Icons/fi-ss-add.svg</file>
+        <file>Icons/fi-ss-calendar.svg</file>
+        <file>Icons/fi-ss-gym.svg</file>
+        <file>Icons/fi-ss-home.svg</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>pages/CreateWorkout.qml</file>
+    </qresource>
+</RCC>
