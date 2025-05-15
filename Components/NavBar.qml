@@ -16,7 +16,6 @@ Rectangle {
         GradientStop { position: 0.70; color: "#121416" }
     }
     anchors.bottom: parent.bottom
-    anchors.horizontalCenter: parent.horizontalCenter
     anchors.bottomMargin: 34
     anchors.leftMargin: 16
     anchors.rightMargin: 16
@@ -51,7 +50,7 @@ Rectangle {
         }
 
         ToolButton {
-            property string page: "pages/CreateWorkout.qml"
+            property string page: "pages/Goals.qml"
             icon.source: "qrc:/res/Icons/fi-ss-add.svg"
             icon.color: currentPage === page ? "#FFA05C" : "#A1A1AA"
             display: AbstractButton.IconOnly

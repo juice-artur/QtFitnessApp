@@ -22,7 +22,7 @@ qt_add_qml_module(appGymHelper
     RESOURCES Icons.qrc
     QML_FILES pages/Workout.qml
     QML_FILES pages/HomePage.qml
-    QML_FILES pages/CreateWorkout.qml
+    QML_FILES pages/Goals.qml
     QML_FILES pages/Calendar.qml
 )
 
