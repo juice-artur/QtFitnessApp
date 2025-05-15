@@ -10,7 +10,7 @@ Rectangle {
     property string currentPage: ""
 
     height: 64
-    width: parent.width - 32
+
     gradient: Gradient {
         GradientStop { position: 0.23; color: "#353a40" }
         GradientStop { position: 0.70; color: "#121416" }
@@ -18,6 +18,8 @@ Rectangle {
     anchors.bottom: parent.bottom
     anchors.horizontalCenter: parent.horizontalCenter
     anchors.bottomMargin: 34
+    anchors.leftMargin: 16
+    anchors.rightMargin: 16
     radius: 100
 
     signal navigateToPage(string pageUrl)
