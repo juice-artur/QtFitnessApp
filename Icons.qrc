@@ -4,5 +4,6 @@
         <file>Icons/fi-ss-calendar.svg</file>
         <file>Icons/fi-ss-gym.svg</file>
         <file>Icons/fi-ss-home.svg</file>
+        <file>Icons/fi-ss-plus.svg</file>
     </qresource>
 </RCC>

@@ -9,6 +9,7 @@ find_package(Qt6 REQUIRED COMPONENTS Quick)
 qt_standard_project_setup(REQUIRES 6.8)
 set(CMAKE_AUTORCC ON)
 
+
 qt_add_executable(appGymHelper
     main.cpp
 )
@@ -19,6 +20,7 @@ qt_add_qml_module(appGymHelper
     QML_FILES
         Main.qml
         Components/NavBar.qml
+        Components/CustomProgressBar.qml
     RESOURCES Icons.qrc
     QML_FILES pages/Workout.qml
     QML_FILES pages/HomePage.qml
