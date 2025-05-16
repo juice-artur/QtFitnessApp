@@ -6,7 +6,7 @@ Item {
     property real value: 0.5
     property color backgroundColor: "#3F3F46"
     property color progressColor: "#F06500"
-    property int barHeight: 8
+    property int barHeight: 15
     width: 200
     height: barHeight
 

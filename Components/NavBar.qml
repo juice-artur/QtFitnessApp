@@ -20,8 +20,6 @@ Rectangle {
     anchors.rightMargin: 16
     radius: 100
 
-    signal navigateToPage(string pageUrl)
-
     RowLayout {
         anchors.fill: parent
         anchors.margins: 8
@@ -35,7 +33,7 @@ Rectangle {
             display: AbstractButton.IconOnly
             Layout.fillWidth: true
             Layout.preferredWidth: 1
-            onClicked: navigateToPage(page)
+            onClicked: NavigationManager.navigateTo(page)
         }
 
         ToolButton {
@@ -45,7 +43,7 @@ Rectangle {
             display: AbstractButton.IconOnly
             Layout.fillWidth: true
             Layout.preferredWidth: 1
-            onClicked: navigateToPage(page)
+            onClicked:NavigationManager.navigateTo(page)
         }
 
         ToolButton {
@@ -55,7 +53,7 @@ Rectangle {
             display: AbstractButton.IconOnly
             Layout.fillWidth: true
             Layout.preferredWidth: 1
-            onClicked: navigateToPage(page)
+            onClicked: NavigationManager.navigateTo(page)
         }
 
         ToolButton {
@@ -65,7 +63,7 @@ Rectangle {
             display: AbstractButton.IconOnly
             Layout.fillWidth: true
             Layout.preferredWidth: 1
-            onClicked: navigateToPage(page)
+            onClicked: NavigationManager.navigateTo(page)
         }
     }
 }

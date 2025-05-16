@@ -7,6 +7,7 @@ import GymHelper
 Item {
     width: 360
     height: 640
+    signal navigateToPage(string pageUrl)
 
     Rectangle {
         width: parent.width
@@ -73,7 +74,7 @@ Item {
                 width: parent.width
                 height: 40
                 icon.color: "#FFFFFF"
-
+                onClicked: navigateToPage(page)
 
                 contentItem: Row {
                     width: parent.width
@@ -113,8 +114,8 @@ Item {
                     radius: 8
                     gradient: Gradient {
                         orientation: Gradient.Horizontal
-                        GradientStop { position: 1; color: "#FFA05C" }
-                        GradientStop { position: 0; color: "#F06500" }
+                        GradientStop { position: 0; color: "#FFA05C" }
+                        GradientStop { position: 1; color: "#F06500" }
                     }
                 }
             }

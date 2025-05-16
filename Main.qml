@@ -4,6 +4,8 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import GymHelper
 
+
+
 Window {
     id: root
     width: 640
@@ -13,6 +15,15 @@ Window {
 
     property string currentPage: "pages/Workout.qml"
     property string nextPage: ""
+
+    Component.onCompleted: {
+        NavigationManager.navigateTo.connect(function(pageUrl) {
+            if (pageUrl !== currentPage) {
+                nextPage = pageUrl;
+                pageContainer.transitionTo(pageUrl);
+            }
+        });
+    }
 
     Item {
         id: pageContainer
@@ -86,12 +97,5 @@ Window {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         currentPage: root.currentPage
-
-        onNavigateToPage: (pageUrl) => {
-            if (pageUrl !== currentPage) {
-                nextPage = pageUrl;
-                pageContainer.transitionTo(pageUrl);
-            }
-        }
     }
 }
