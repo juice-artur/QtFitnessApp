@@ -12,8 +12,9 @@ Item {
         width: parent.width
         height: parent.height
         gradient: Gradient {
-            GradientStop { position: 0.23; color: "#353A40" }
-            GradientStop { position: 0.7; color: "#121416" }
+            orientation: Gradient.Horizontal
+            GradientStop { position: 1; color: "#32383E" }
+            GradientStop { position: 0; color: "#17191C" }
         }
 
 
@@ -111,8 +112,9 @@ Item {
                     anchors.fill: parent
                     radius: 8
                     gradient: Gradient {
-                        GradientStop { position: 0; color: "#FFA05C" }
-                        GradientStop { position: 1; color: "#F06500" }
+                        orientation: Gradient.Horizontal
+                        GradientStop { position: 1; color: "#FFA05C" }
+                        GradientStop { position: 0; color: "#F06500" }
                     }
                 }
             }
