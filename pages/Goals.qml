@@ -12,11 +12,7 @@ Item {
     Rectangle {
         width: parent.width
         height: parent.height
-        gradient: Gradient {
-            orientation: Gradient.Horizontal
-            GradientStop { position: 1; color: "#32383E" }
-            GradientStop { position: 0; color: "#17191C" }
-        }
+        gradient: Styles.backgroundGradient
 
 
         Column {
@@ -73,8 +69,8 @@ Item {
             ToolButton {
                 width: parent.width
                 height: 40
-                icon.color: "#FFFFFF"
-                onClicked: navigateToPage(page)
+                icon.color: "#FFFFFF"           
+                onClicked: NavigationManager.navigateTo("pages/CreateWorkout.qml")
 
                 contentItem: Row {
                     width: parent.width

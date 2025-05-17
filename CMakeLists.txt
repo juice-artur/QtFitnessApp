@@ -15,6 +15,7 @@ qt_add_executable(appGymHelper
 )
 
 set_source_files_properties(Services/NavigationManager.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
+set_source_files_properties(Styles/Styles.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 
 qt_add_qml_module(appGymHelper
     URI GymHelper
@@ -24,6 +25,7 @@ qt_add_qml_module(appGymHelper
         Components/NavBar.qml
         Components/CustomProgressBar.qml
         Services/NavigationManager.qml
+        Styles/Styles.qml
     RESOURCES Icons.qrc
     QML_FILES pages/Workout.qml
     QML_FILES pages/HomePage.qml
