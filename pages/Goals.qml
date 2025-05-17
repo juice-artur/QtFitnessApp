@@ -5,8 +5,6 @@ import QtQuick.Layouts 1.15
 import GymHelper
 
 Item {
-    width: 360
-    height: 640
     signal navigateToPage(string pageUrl)
 
     Rectangle {

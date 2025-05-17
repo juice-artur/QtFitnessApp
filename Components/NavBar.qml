@@ -8,6 +8,7 @@ Rectangle {
     property string currentPage: ""
 
     height: 64
+    visible: NavigationManager.showNavBar
 
     gradient: Gradient {
         orientation: Gradient.Horizontal
