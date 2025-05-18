@@ -24,6 +24,7 @@ qt_add_qml_module(appGymHelper
         Main.qml
         Components/NavBar.qml
         Components/CustomProgressBar.qml
+        Components/SelectableIconButtons.qml
         Services/NavigationManager.qml
         Styles/Styles.qml
     RESOURCES Icons.qrc

@@ -6,5 +6,8 @@
         <file>Icons/fi-ss-home.svg</file>
         <file>Icons/fi-ss-plus.svg</file>
         <file>Icons/fi-ss-arrow-small-left.svg</file>
+        <file>Icons/Clock.svg</file>
+        <file>Icons/fi-ss-chart-pie.svg</file>
+        <file>Icons/fi-ss-refresh.svg</file>
     </qresource>
 </RCC>

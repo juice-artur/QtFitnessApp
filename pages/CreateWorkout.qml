@@ -14,14 +14,15 @@ Item {
         height: parent.height
         gradient: Styles.backgroundGradient
 
-        Column {
+        ColumnLayout {
             width: parent.width
-            anchors.fill: parent
+            anchors.top: parent.top
             anchors.margins: 16
             spacing: 16
 
             RowLayout  {
                 width: parent.width
+                Layout.bottomMargin: 16
 
                 ToolButton {
                     id: iconItem
@@ -31,19 +32,31 @@ Item {
                     onClicked: NavigationManager.navigateTo("pages/Goals.qml")
                 }
 
-
-                Item { Layout.fillWidth: true }
-
-                Text {
-                    text: qsTr("Create Exercise")
-                    font.pixelSize: 18
-                    font.weight: Font.Medium
-                    color: "#A1A1AA"
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                Item {
+                    Layout.fillWidth: true
+                    Text {
+                        anchors.centerIn: parent
+                        text: qsTr("Create Exercise")
+                        font.pixelSize: 18
+                        font.weight: Font.Medium
+                        color: "#A1A1AA"
+                    }
                 }
 
-                Item { Layout.fillWidth: true }
+                Item {
+                    width: iconItem.width
+                    height: iconItem.height
+                }
+            }
+
+            SelectableIconButtons {
+                buttonModel: [
+                    { icon: "qrc:/res/Icons/fi-ss-refresh.svg", label: "Warm up" },
+                    { icon: "qrc:/res/Icons/Clock.svg", label: "Main" },
+                    { icon: "qrc:/res/Icons/fi-ss-chart-pie.svg", label: "Cool Down" }
+                ]
             }
         }
+
     }
 }
