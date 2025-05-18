@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.15
 import GymHelper
 
 Item {
+    Component.onCompleted: NavigationManager.showNavBar = true
     signal navigateToPage(string pageUrl)
 
     Rectangle {

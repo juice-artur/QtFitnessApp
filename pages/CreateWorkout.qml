@@ -6,7 +6,7 @@ import GymHelper
 
 Item {
     Component.onCompleted: NavigationManager.showNavBar = false
-    Component.onDestruction: NavigationManager.showNavBar = true
+
 
     Rectangle {
         id: root
