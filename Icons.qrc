@@ -9,5 +9,7 @@
         <file>Icons/Clock.svg</file>
         <file>Icons/fi-ss-chart-pie.svg</file>
         <file>Icons/fi-ss-refresh.svg</file>
+        <file>Icons/fi-ss-caret-down.svg</file>
+        <file>Icons/fi-ss-caret-up.svg</file>
     </qresource>
 </RCC>

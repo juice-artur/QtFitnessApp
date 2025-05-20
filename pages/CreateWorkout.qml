@@ -165,7 +165,18 @@ Item {
                 }
             }
 
+            ParameterStepper {
+                id: repsStepper
+                label: "Reps:"
+                unit: "reps"
+                from: 1
+                to: 1000000
+                step: 1
+                onValueChanged: {
+                    console.log("Reps changed to:", repsStepper.value)
+                }
+            }
+
         }
     }
 }
-
