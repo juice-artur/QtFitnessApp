@@ -3,13 +3,16 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import GymHelper
+import QtQuick.VirtualKeyboard 2.2
 
 
-
-Window {
+ApplicationWindow  {
     id: root
     visible: true
+    width: 360
+    height: 640
     title: qsTr("Slide Transition SPA")
+    flags: Qt.Window | Qt.MaximizeUsingFullscreenGeometryHint
 
     property string currentPage: "pages/Workout.qml"
     property string nextPage: ""
@@ -21,6 +24,23 @@ Window {
                 pageContainer.transitionTo(pageUrl);
             }
         });
+    }
+
+    InputPanel {
+        id: keyboard
+        visible: Qt.inputMethod.visible
+        z: 99
+        anchors.bottom: parent.bottom
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+
+        Keyboard {
+            id: keyboardInternal
+            anchors.fill: root
+        }
     }
 
     Item {
@@ -96,4 +116,5 @@ Window {
         anchors.bottom: parent.bottom
         currentPage: root.currentPage
     }
+
 }

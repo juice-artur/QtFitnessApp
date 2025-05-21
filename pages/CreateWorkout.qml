@@ -138,7 +138,6 @@ Item {
                     }
                 }
 
-
                 popup: Popup {
                     y: control.height
                     width: control.width
@@ -165,15 +164,66 @@ Item {
                 }
             }
 
-            ParameterStepper {
-                id: repsStepper
-                label: "Reps:"
-                unit: "reps"
-                from: 1
-                to: 1000000
-                step: 1
-                onValueChanged: {
-                    console.log("Reps changed to:", repsStepper.value)
+            ColumnLayout {
+                width: parent.width
+                Layout.alignment: Qt.AlignHCenter
+                RowLayout  {
+                    width: parent.width
+                    Layout.bottomMargin: 16
+
+                    ParameterStepper {
+                        id: repsStepper
+                        Layout.rightMargin: 40
+                        label: "Reps:"
+                        unit: "reps"
+                        from: 1
+                        to: 1000000
+                        step: 1
+                        onValueChanged: {
+                            console.log("Reps changed to:", repsStepper.value)
+                        }
+                    }
+
+                    ParameterStepper {
+                        id: setsStepper
+                        label: "Sets:"
+                        unit: "sets"
+                        from: 1
+                        to: 1000000
+                        step: 1
+                        onValueChanged: {
+                            console.log("Sets changed to:", setsStepper.value)
+                        }
+                    }
+                }
+
+                RowLayout  {
+                    width: parent.width
+
+                    ParameterStepper {
+                        id: weightStepper
+                        Layout.rightMargin: 40
+                        label: "Weight:"
+                        unit: "kg"
+                        from: 1
+                        to: 1000000
+                        step: 1
+                        onValueChanged: {
+                            console.log("Weight changed to:", weightStepper.value)
+                        }
+                    }
+
+                    ParameterStepper {
+                        id: resttimerStepper
+                        label: "Rest timer:"
+                        unit: "s"
+                        from: 1
+                        to: 1000000
+                        step: 1
+                        onValueChanged: {
+                            console.log("Time changed to:", resttimerStepper.value)
+                        }
+                    }
                 }
             }
 
