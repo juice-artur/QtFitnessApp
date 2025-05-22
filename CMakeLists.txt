@@ -35,6 +35,7 @@ qt_add_qml_module(appGymHelper
     QML_FILES pages/Goals.qml
     QML_FILES pages/Calendar.qml
     QML_FILES pages/CreateWorkout.qml
+    QML_FILES Components/CreateExerciseComponent.qml
 )
 
 

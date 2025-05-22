@@ -89,7 +89,6 @@ Item {
                             textInput.text = spinBox.value
                             textInput.visible = true
                             textInput.forceActiveFocus()
-                            textInput.selectAll()
                             Qt.inputMethod.show()
                         }
                     }

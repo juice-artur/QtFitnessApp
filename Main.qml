@@ -37,10 +37,8 @@ ApplicationWindow  {
             bottom: parent.bottom
         }
 
-        Keyboard {
-            id: keyboardInternal
-            anchors.fill: root
-        }
+        scale: 2.0
+        transformOrigin: Item.Bottom
     }
 
     Item {

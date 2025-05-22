@@ -226,7 +226,43 @@ Item {
                     }
                 }
             }
+        }
 
+        ToolButton {
+            id: bottomButton
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 16
+            width: parent.width - 32
+            height: 48
+
+            icon.color: "#FFFFFF"
+            onClicked: NavigationManager.navigateTo("pages/CreateWorkout.qml")
+
+
+            contentItem: Item {
+                anchors.fill: parent
+
+                Text {
+                    id: textItem
+                    text: qsTr("Create new plan")
+                    color: "#FFFFFF"
+                    font.weight: Font.DemiBold
+                    font.pixelSize: 16
+                    anchors.centerIn: parent
+                }
+             }
+
+
+            background: Rectangle {
+                anchors.fill: parent
+                radius: 8
+                gradient: Gradient {
+                    orientation: Gradient.Horizontal
+                    GradientStop { position: 0; color: "#FFA05C" }
+                    GradientStop { position: 1; color: "#F06500" }
+                }
+            }
         }
     }
 }
