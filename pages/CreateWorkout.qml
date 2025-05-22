@@ -56,7 +56,6 @@ Item {
                 Layout.bottomMargin: 24
                 buttonModel: [
                     { icon: "qrc:/res/Icons/fi-ss-refresh.svg", label: "Warm up" },
-                    { icon: "qrc:/res/Icons/Clock.svg", label: "Main" },
                     { icon: "qrc:/res/Icons/fi-ss-chart-pie.svg", label: "Cool Down" }
                 ]
             }
