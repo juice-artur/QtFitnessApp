@@ -17,6 +17,7 @@ Item {
         ColumnLayout {
             width: parent.width - 32
             anchors.top: parent.top
+            anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.margins: 16
             spacing: 16
@@ -51,6 +52,7 @@ Item {
             }
 
             SelectableIconButtons {
+                Layout.fillWidth: true
                 Layout.bottomMargin: 24
                 buttonModel: [
                     { icon: "qrc:/res/Icons/fi-ss-refresh.svg", label: "Warm up" },
@@ -164,105 +166,11 @@ Item {
                 }
             }
 
-            ColumnLayout {
-                width: parent.width
-                Layout.alignment: Qt.AlignHCenter
-                RowLayout  {
-                    width: parent.width
-                    Layout.bottomMargin: 16
 
-                    ParameterStepper {
-                        id: repsStepper
-                        Layout.rightMargin: 40
-                        label: "Reps:"
-                        unit: "reps"
-                        from: 1
-                        to: 1000000
-                        step: 1
-                        onValueChanged: {
-                            console.log("Reps changed to:", repsStepper.value)
-                        }
-                    }
-
-                    ParameterStepper {
-                        id: setsStepper
-                        label: "Sets:"
-                        unit: "sets"
-                        from: 1
-                        to: 1000000
-                        step: 1
-                        onValueChanged: {
-                            console.log("Sets changed to:", setsStepper.value)
-                        }
-                    }
-                }
-
-                RowLayout  {
-                    width: parent.width
-
-                    ParameterStepper {
-                        id: weightStepper
-                        Layout.rightMargin: 40
-                        label: "Weight:"
-                        unit: "kg"
-                        from: 1
-                        to: 1000000
-                        step: 1
-                        onValueChanged: {
-                            console.log("Weight changed to:", weightStepper.value)
-                        }
-                    }
-
-                    ParameterStepper {
-                        id: resttimerStepper
-                        label: "Rest timer:"
-                        unit: "s"
-                        from: 1
-                        to: 1000000
-                        step: 1
-                        onValueChanged: {
-                            console.log("Time changed to:", resttimerStepper.value)
-                        }
-                    }
-                }
-            }
+        CreateExerciseComponent{
+            Layout.fillWidth: true
+            Layout.fillHeight: true
         }
-
-        ToolButton {
-            id: bottomButton
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 16
-            width: parent.width - 32
-            height: 48
-
-            icon.color: "#FFFFFF"
-            onClicked: NavigationManager.navigateTo("pages/CreateWorkout.qml")
-
-
-            contentItem: Item {
-                anchors.fill: parent
-
-                Text {
-                    id: textItem
-                    text: qsTr("Create new plan")
-                    color: "#FFFFFF"
-                    font.weight: Font.DemiBold
-                    font.pixelSize: 16
-                    anchors.centerIn: parent
-                }
-             }
-
-
-            background: Rectangle {
-                anchors.fill: parent
-                radius: 8
-                gradient: Gradient {
-                    orientation: Gradient.Horizontal
-                    GradientStop { position: 0; color: "#FFA05C" }
-                    GradientStop { position: 1; color: "#F06500" }
-                }
-            }
         }
     }
 }
