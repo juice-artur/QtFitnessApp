@@ -13,6 +13,9 @@ set(CMAKE_AUTORCC ON)
 
 qt_add_executable(appGymHelper
     main.cpp
+    Models/ExerciseModel.h
+    Models/ExerciseModel.cpp
+    Models/ModelTypes.h
 )
 
 set_source_files_properties(Services/NavigationManager.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)

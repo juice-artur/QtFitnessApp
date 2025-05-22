@@ -3,6 +3,7 @@ import QtQuick.Controls.Material 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import GymHelper
+import App.Models 1.0
 
 Item {
     Component.onCompleted: NavigationManager.showNavBar = false
@@ -166,10 +167,10 @@ Item {
             }
 
 
-        CreateExerciseComponent{
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-        }
+            CreateExerciseComponent{
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
         }
     }
 }

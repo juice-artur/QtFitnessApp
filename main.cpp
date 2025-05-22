@@ -1,6 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QSurfaceFormat>
+#include <QQmlContext>
+
+#include <Models/ExerciseModel.h>
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +17,12 @@ int main(int argc, char *argv[])
     fmt.setAlphaBufferSize(8);
     QSurfaceFormat::setDefaultFormat(fmt);
 
+    qmlRegisterUncreatableType<ExerciseTypeWrapper>(
+        "App.Models", 1, 0,
+        "ExerciseTypeWrapper",
+        "Cannot create ExerciseTypeWrapper in QML");
+
+
     QQmlApplicationEngine engine;
     QObject::connect(
         &engine,
@@ -22,6 +31,9 @@ int main(int argc, char *argv[])
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
     engine.loadFromModule("GymHelper", "Main");
+
+    ExerciseModel* exerciseModel = new ExerciseModel();
+    engine.rootContext()->setContextProperty("exerciseModel", exerciseModel);
 
     return app.exec();
 }

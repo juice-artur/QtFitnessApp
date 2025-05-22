@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import GymHelper
+import App.Models 1.0
 
 ColumnLayout {
     width: parent.width
@@ -90,6 +91,6 @@ ColumnLayout {
             }
         }
 
-        onClicked: NavigationManager.navigateTo("pages/CreateWorkout.qml")
+        onClicked: exerciseModel.addExercise(ExerciseTypeWrapper.PushUps, 10, 10, 10)
     }
 }
