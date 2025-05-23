@@ -92,7 +92,7 @@ ColumnLayout {
         }
 
         onClicked:  {
-            exerciseModel.addExercise(ExerciseTypeWrapper.PushUps, 10, 10, 10)
+            exerciseModel.addExercise(ExerciseTypeWrapper.PushUps, repsStepper.value, weightStepper.value, resttimerStepper.value, setsStepper.value)
             exerciseModel.saveToFile()
         }
     }

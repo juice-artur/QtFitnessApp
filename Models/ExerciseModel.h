@@ -14,6 +14,7 @@ struct Exercise {
     int repetitions;
     float weight;
     int restTime;
+    int sets;
 };
 
 class ExerciseModel : public QAbstractListModel {
@@ -24,7 +25,8 @@ public:
         TypeRole = Qt::UserRole + 1,
         RepetitionsRole,
         WeightRole,
-        RestTimeRole
+        RestTimeRole,
+        SetsRole
     };
 
 
@@ -48,6 +50,7 @@ public:
         case RepetitionsRole: return ex.repetitions;
         case WeightRole: return ex.weight;
         case RestTimeRole: return ex.restTime;
+        case SetsRole: return ex.sets;
         default: return QVariant();
         }
     }
@@ -57,20 +60,22 @@ public:
             { TypeRole, "type" },
             { RepetitionsRole, "repetitions" },
             { WeightRole, "weight" },
-            { RestTimeRole, "restTime" }
+            { RestTimeRole, "restTime" },
+            { SetsRole, "setsRole" }
         };
     }
 
-    Q_INVOKABLE void addExercise(int type, int reps, float weight, int rest) {
+    Q_INVOKABLE void addExercise(int type, int reps, float weight, int rest, int sets) {
         beginInsertRows(QModelIndex(), m_data.size(), m_data.size());
-        m_data.append({ static_cast<ExerciseTypeWrapper::ExerciseType>(type), reps, weight, rest });
+        m_data.append({ static_cast<ExerciseTypeWrapper::ExerciseType>(type), reps, weight, rest, sets });
         endInsertRows();
 
         qDebug() << "Added exercise:"
                  << "Type =" << type
                  << ", Reps =" << reps
                  << ", Weight =" << weight
-                 << ", Rest time =" << rest;
+                 << ", Rest time =" << rest
+                 << ", Sets =" << sets;
 
     }
 
@@ -90,6 +95,7 @@ public:
             obj["repetitions"] = ex.repetitions;
             obj["weight"] = ex.weight;
             obj["restTime"] = ex.restTime;
+            obj["sets"] = ex.sets;
             exercisesArray.append(obj);
         }
 
@@ -125,12 +131,14 @@ public:
             ex.repetitions = obj["repetitions"].toInt();
             ex.weight = obj["weight"].toDouble();
             ex.restTime = obj["restTime"].toInt();
+            ex.sets = obj["sets"].toInt();
 
             qDebug() << "Added exercise:"
                      << "Type =" <<  ex.type
                      << ", Reps =" <<  ex.repetitions
                      << ", Weight =" <<  ex.weight
-                     << ", Rest time =" <<  ex.restTime;
+                     << ", Rest time =" <<  ex.restTime
+                     << ", Sets =" <<  ex.sets;
         }
 
         qDebug() << "Exercises loaded from" << path;
