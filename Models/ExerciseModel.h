@@ -3,6 +3,11 @@
 #include "Models/ModelTypes.h"
 #include <QAbstractListModel>
 #include <QDebug>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QStandardPaths>
 
 struct Exercise {
      ExerciseTypeWrapper::ExerciseType type;
@@ -25,7 +30,9 @@ public:
 
 
     ExerciseModel(QObject* parent = nullptr)
-        : QAbstractListModel(parent) {}
+        : QAbstractListModel(parent) {
+        loadFromFile();
+    }
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override {
         Q_UNUSED(parent);
@@ -73,6 +80,66 @@ public:
         m_data.removeAt(index);
         endRemoveRows();
     }
+
+
+    Q_INVOKABLE void saveToFile() {
+        QJsonArray exercisesArray;
+        for (const Exercise& ex : m_data) {
+            QJsonObject obj;
+            obj["type"] = static_cast<int>(ex.type);
+            obj["repetitions"] = ex.repetitions;
+            obj["weight"] = ex.weight;
+            obj["restTime"] = ex.restTime;
+            exercisesArray.append(obj);
+        }
+
+        QJsonDocument doc(exercisesArray);
+        const QString path = storageFilePath();
+        QFile file(path);
+        if (file.open(QIODevice::WriteOnly)) {
+            file.write(doc.toJson());
+            file.close();
+            qDebug() << "Exercises saved to" << path;
+        } else {
+            qWarning() << "Failed to save exercises to" << path;
+        }
+    }
+
+    Q_INVOKABLE void loadFromFile() {
+        const QString path = storageFilePath();
+        QFile file(path);
+        if (!file.open(QIODevice::ReadOnly)) {
+            qWarning() << "No existing file to load:" << path;
+            return;
+        }
+
+        QByteArray data = file.readAll();
+        file.close();
+
+        QJsonDocument doc = QJsonDocument::fromJson(data);
+        if (!doc.isArray()) return;
+        for (const QJsonValue& val : doc.array()) {
+            QJsonObject obj = val.toObject();
+            Exercise ex;
+            ex.type = static_cast<ExerciseTypeWrapper::ExerciseType>(obj["type"].toInt());
+            ex.repetitions = obj["repetitions"].toInt();
+            ex.weight = obj["weight"].toDouble();
+            ex.restTime = obj["restTime"].toInt();
+
+            qDebug() << "Added exercise:"
+                     << "Type =" <<  ex.type
+                     << ", Reps =" <<  ex.repetitions
+                     << ", Weight =" <<  ex.weight
+                     << ", Rest time =" <<  ex.restTime;
+        }
+
+        qDebug() << "Exercises loaded from" << path;
+    }
+
+    QString storageFilePath() const {
+        return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/exercises.json";
+    }
+
 
 private:
     QList<Exercise> m_data;

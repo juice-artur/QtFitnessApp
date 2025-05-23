@@ -166,7 +166,6 @@ Item {
                 }
             }
 
-
             CreateExerciseComponent{
                 Layout.fillWidth: true
                 Layout.fillHeight: true

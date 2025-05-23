@@ -91,6 +91,9 @@ ColumnLayout {
             }
         }
 
-        onClicked: exerciseModel.addExercise(ExerciseTypeWrapper.PushUps, 10, 10, 10)
+        onClicked:  {
+            exerciseModel.addExercise(ExerciseTypeWrapper.PushUps, 10, 10, 10)
+            exerciseModel.saveToFile()
+        }
     }
 }
