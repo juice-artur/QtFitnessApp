@@ -94,7 +94,6 @@ ColumnLayout {
 
         onClicked:  {
             exerciseModel.addExercise(type, repsStepper.value, weightStepper.value, resttimerStepper.value, setsStepper.value)
-            exerciseModel.saveToFile()
         }
     }
 }

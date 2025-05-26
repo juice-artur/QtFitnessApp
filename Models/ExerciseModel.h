@@ -69,6 +69,7 @@ public:
         beginInsertRows(QModelIndex(), m_data.size(), m_data.size());
         m_data.append({ static_cast<ExerciseTypeWrapper::ExerciseType>(type), reps, weight, rest, sets });
         endInsertRows();
+        saveToFile({ static_cast<ExerciseTypeWrapper::ExerciseType>(type), reps, weight, rest, sets });
 
         qDebug() << "Added exercise:"
                  << "Type =" << type
@@ -87,27 +88,37 @@ public:
     }
 
 
-    Q_INVOKABLE void saveToFile() {
-        QJsonArray exercisesArray;
-        for (const Exercise& ex : m_data) {
-            QJsonObject obj;
-            obj["type"] = static_cast<int>(ex.type);
-            obj["repetitions"] = ex.repetitions;
-            obj["weight"] = ex.weight;
-            obj["restTime"] = ex.restTime;
-            obj["sets"] = ex.sets;
-            exercisesArray.append(obj);
-        }
-
-        QJsonDocument doc(exercisesArray);
+    Q_INVOKABLE void saveToFile(Exercise ex) {
         const QString path = storageFilePath();
         QFile file(path);
-        if (file.open(QIODevice::WriteOnly)) {
-            file.write(doc.toJson());
+
+        QJsonArray exercisesArray;
+
+        if (file.exists() && file.open(QIODevice::ReadOnly)) {
+            QByteArray data = file.readAll();
             file.close();
-            qDebug() << "Exercises saved to" << path;
+
+            QJsonDocument doc = QJsonDocument::fromJson(data);
+            if (doc.isArray()) {
+                exercisesArray = doc.array();
+            }
+        }
+
+        QJsonObject obj;
+        obj["type"] = static_cast<int>(ex.type);
+        obj["repetitions"] = ex.repetitions;
+        obj["weight"] = ex.weight;
+        obj["restTime"] = ex.restTime;
+        obj["sets"] = ex.sets;
+        exercisesArray.append(obj);
+
+        QJsonDocument updatedDoc(exercisesArray);
+        if (file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+            file.write(updatedDoc.toJson());
+            file.close();
+            qDebug() << "Exercise appended to" << path;
         } else {
-            qWarning() << "Failed to save exercises to" << path;
+            qWarning() << "Failed to save exercise to" << path;
         }
     }
 
@@ -133,7 +144,9 @@ public:
             ex.restTime = obj["restTime"].toInt();
             ex.sets = obj["sets"].toInt();
 
-            qDebug() << "Added exercise:"
+            m_data.push_back(ex);
+
+            qDebug() << "Readed exercise:"
                      << "Type =" <<  ex.type
                      << ", Reps =" <<  ex.repetitions
                      << ", Weight =" <<  ex.weight
