@@ -10,26 +10,27 @@ Item {
 
 
     Rectangle {
-        id: root
         width: parent.width
         height: parent.height
         gradient: Styles.backgroundGradient
 
         ColumnLayout {
-            width: parent.width - 32
+            width: parent.width
+            anchors.fill: parent
+            Layout.fillWidth: true
+            Layout.leftMargin: 16
+            Layout.rightMargin: 16
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.margins: 16
             spacing: 16
 
             RowLayout  {
-                width: parent.width
+                Layout.fillWidth: true
                 Layout.bottomMargin: 16
-
                 ToolButton {
+
                     id: iconItem
-                    height: 40
                     icon.color: "#FFFFFF"
                     icon.source:  "qrc:/res/Icons/fi-ss-arrow-small-left.svg"
                     onClicked: NavigationManager.navigateTo("pages/Goals.qml")
@@ -68,11 +69,13 @@ Item {
                 rightPadding: 32
                 topPadding: 0
                 bottomPadding: 0
+                Layout.leftMargin: 16
+                Layout.rightMargin: 16
 
                 model: ListModel {
-                    ListElement { name: "Pull-ups" }
-                    ListElement { name: "Push-Ups" }
-                    ListElement { name: "Bench press" }
+                    ListElement { name: "Pull-ups"; value: ExerciseTypeWrapper.PullUps }
+                    ListElement { name: "Push-Ups"; value: ExerciseTypeWrapper.PushUps }
+                    ListElement { name: "Bench press"; value: ExerciseTypeWrapper.BenchPress }
                 }
 
                 textRole: "name"
@@ -167,6 +170,7 @@ Item {
             }
 
             CreateExerciseComponent{
+                type: control.currentIndex >= 0 ? control.model.get(control.currentIndex).value : ExerciseTypeWrapper.PullUps
                 Layout.fillWidth: true
                 Layout.fillHeight: true
             }

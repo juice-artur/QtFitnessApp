@@ -5,6 +5,7 @@ import GymHelper
 import App.Models 1.0
 
 ColumnLayout {
+    property int type: ExerciseTypeWrapper.PullUps
     width: parent.width
     height: parent.height
     spacing: 16
@@ -92,7 +93,7 @@ ColumnLayout {
         }
 
         onClicked:  {
-            exerciseModel.addExercise(ExerciseTypeWrapper.PushUps, repsStepper.value, weightStepper.value, resttimerStepper.value, setsStepper.value)
+            exerciseModel.addExercise(type, repsStepper.value, weightStepper.value, resttimerStepper.value, setsStepper.value)
             exerciseModel.saveToFile()
         }
     }

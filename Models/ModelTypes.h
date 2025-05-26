@@ -6,9 +6,9 @@ class ExerciseTypeWrapper : public QObject {
     Q_OBJECT
 public:
     enum ExerciseType {
-        PushUps,
-        PullUps,
-        BenchPress
+        PushUps = 0,
+        PullUps = 1,
+        BenchPress = 2
     };
     Q_ENUM(ExerciseType)
 };
